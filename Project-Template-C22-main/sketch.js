@@ -17,13 +17,13 @@ function setup() {
 	world = engine.world;
 
 	var roof_options={
-		isStatic:true			
+		isStatic:false			
 	}
 
 	roof = Bodies.rectangle(400,100,230,20,roof_options);
     World.add(world,roof);
 
-	Engine.run(engine);
+	
 	
 	var bob_options = {
 		restitution: 0.8,
@@ -51,6 +51,7 @@ r1 = new Rope({x:350,y:100},bob1);
 r2 = new Rope({x:300,y:100},bob2);
 r3 = new Rope({x:450,y:100},bob3);
 r4 = new Rope({x:500,y:100},bob4);
+Engine.run(engine);
 }
 
 function draw() {
@@ -78,10 +79,16 @@ r4.display();
 if(keyDown('w')){
 	push();
 }
+
 }
 
 //Write keyPressed function and apply force on pressing up_arrow key on the first bob.
 
-function push(){
-	Matter.Body.applyForce(bob,{x:0,y:0},{x:0.5,y:0})
+//function push(){
+//	Matter.Body.applyForce(bob,{x:0,y:0},{x:0.5,y:0})
+//}
+function keyPressed(){
+	if(keyCode===UP_ARROW){
+		Matter.Body.applyForce(bob2,bob2.position,{x:-50,y:-45})
+	}
 }
